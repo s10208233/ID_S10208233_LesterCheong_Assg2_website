@@ -8,28 +8,22 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <style>
-      body h1{
-          text-align: center;
-      }
-      .pokemon-container{
-          width: 80%;
-          margin: auto;
-          text-align: center;
-      }
+      
   </style>
 </head>
 <body>
 <!-- Nav Bar -->
 <header>
-    <input id="searchInput" type="text" placeholder="Search">
+    <input id="searchInput" type="text" placeholder="enter number of name">
     <input id="searchSubmit" type="submit">
 </header>
 <!-- Main Content -->
-
 <div class="main-content">
-<h1>Pokemon Database</h1>
-    <div class="pokemon-container">
-        <h2>Pokemon Goes Here</h2>
+<h1>PokeDex</h1>
+    <div id="pokemon-container">
+        <div class="national-dex"><a href="#national"></a>
+            
+        </div>
     </div>
 </div>
 
@@ -39,6 +33,5 @@
 </footer>
 <!-- JS -->
 <script src="js/script.js"></script>
-<script src="js/poke-api.js"></script>
 </body>
 </html>

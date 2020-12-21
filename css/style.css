@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+body{
+    font-family: 'Nunito', sans-serif;
+    background-color: black;
+    color: white;
+}
+.pokemon-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.pokemon-card{
+    margin: 50px;
+    padding: 30px;
+    border-radius: 25px;
+    text-align: center;
+    width: 250px;
+}
+.pokemon-card:hover{
+    transition: 0.75s;
+    background-color: white;
+    color: black;
+}
