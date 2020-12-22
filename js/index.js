@@ -1,6 +1,6 @@
 // Consts
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/"
-const pokemonList = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50"
+const pokemonList = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=649"
 
 // Variables
 var pokemonVariables = [];
@@ -15,7 +15,7 @@ fetch(pokemonList)
     nationalDex=data['results'];
 });
 
-setTimeout(initializeList,1000);
+setTimeout(initializeList,750);
 
 
 
@@ -38,6 +38,7 @@ async function getPokemon(input){
         pokemonName = data['forms'][0]['name'];
         pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
         pokemonHeight = data["height"];
+        console.log(data);
     });
     //  Create pokemon cards after every for loop through list
     setTimeout(
@@ -48,17 +49,44 @@ async function getPokemon(input){
 function createCard(imgSrc,id,name,height){
     let card = document.createElement('div');
     card.classList.add("pokemon-card");
-    card.setAttribute("id", name);
     let cardContent = "\
+    <a class='anchors' id="+id+"></a><a class='anchors' id="+name+"></a>\
     <div class='img-container'><img src='"+imgSrc+"'></div>\
     <h1>"+name+"</h1>\
     <p>#"+id+"</p>\
     <p>Height: "+height+"</p>\
-    <button class='details'>";
+    <button class='details'>Details</button>";
     card.innerHTML = cardContent;
     document.getElementById('pokemon-container').appendChild(card)
 }
 
+//  Events
+document.getElementById('searchSubmit').addEventListener('click', function searchByInputpkmID(){
+    let pkmID = document.getElementById('searchInput').value;
+    pkmID = pkmID.charAt(0).toUpperCase() + pkmID.slice(1)
+    console.log(pkmID);
+    scrollTo(pkmID);
+    function scrollTo(hash) {
+        location.hash = "#" + hash;
+    }
+    // fetch(pokemonURL + pkmID)
+    // .then(response=>response.json())
+    // .then(data=>{
+    //     console.log(data.name);
+    //     let name = data.name;
+    //     alert("Searched Pokemon:\n\n"+name.charAt(0).toUpperCase() + name.slice(1))
+    // });
+});
+
+// TO MAKE RETURN KEY HIT searchInput FUNCTION
+document.getElementById('searchInput').addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("searchSubmit").click();
+  }
+});
+
+// AUTO COMPLETE FUCNTION FOR SERACH BAR
 setTimeout(autocomplete(document.getElementById("searchInput"),pokemonVariables),1000);
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -156,22 +184,4 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
   }
-
-
-//  Events
-document.getElementById('searchSubmit').addEventListener('click', function searchByInputpkmID(){
-    let pkmID = document.getElementById('searchInput').value;
-    pkmID = pkmID.charAt(0).toUpperCase() + pkmID.slice(1)
-    console.log(pkmID);
-    scrollTo(pkmID);
-    function scrollTo(hash) {
-        location.hash = "#" + hash;
-    }
-    // fetch(pokemonURL + pkmID)
-    // .then(response=>response.json())
-    // .then(data=>{
-    //     console.log(data.name);
-    //     let name = data.name;
-    //     alert("Searched Pokemon:\n\n"+name.charAt(0).toUpperCase() + name.slice(1))
-    // });
-});
+// END OF AUTOCOMPLETE FUNCTION FOR SEARCH BAR

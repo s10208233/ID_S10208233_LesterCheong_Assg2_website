@@ -1,30 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 html{
     scroll-behavior: smooth;
+    outline: none;
 }
 body{
     margin: 0px;
     font-family: 'Nunito', sans-serif;
-    background-color: white;
+    color: white;
+    background-image:url("/images/dark-pokemon-wallpaper.png");
+    background-size: 1000px;
+    background-repeat: repeat;
+}
+textarea:focus,input:focus,button:focus{
+    outline: none;
 }
 header{
-    padding: 5px 5px;
+    width: 100%;
+    padding: 15px 30px;
     top: 0px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(255, 0, 0, 0.75);
     color: black;
-    width: 300px;
     position: fixed;
-    border-bottom-right-radius: 5px;
 }
-header div{
-    color: white;
-    padding: 15px;
-}
-header #searchInput{
-    display: inline-block;
-    width: 153px;
-    padding: 10px 20px;
+header h1{
+    font-size: 24px;
     margin: 0px;
+    padding: 0px;
+    color: rgb(255,186,65);
+    text-shadow: 0px 2px 3px #000;
+    position: absolute;
+    float: left;
+}
+header .search-bar{
+    width: fit-content;
+    margin-right: 50px;
+    float: right;
+}
+.search-bar #searchInput{
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: inline-block;
+    width: 200px;
+    padding: 10px 20px;
+    margin-right: -4px;
     border: 0px;
 }
 /* Auto Complete Search */
@@ -32,19 +50,40 @@ header #searchInput{
     /*the container must be positioned relative:*/
     position: relative;
     display: inline-block;
+}
+.autocomplete-items{
+    position: absolute;
+}
+.autocomplete-items div {
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #000;
+    color: #FFF;
   }
-
-header #searchSubmit{
+  .autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #1e87dd;
+    color: white;
+  }
+  .autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+  }
+/* End of autocomplete */
+.search-bar #searchSubmit{
     display: inline-block;
     color: rgb(255, 255, 255);
     border: 0px;
     padding: 10px 20px;
     background-color: rgb(0, 105, 167);
-    margin: 0px;
     width: 100px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 .main-content{
-    margin-top: 60px;
+    margin: 150px 0px;
     text-align: center;
 }
 #pokemon-container{
@@ -53,17 +92,20 @@ header #searchSubmit{
     flex-wrap: wrap;
     justify-content: center;
 }
+.anchors{
+    display: block;
+    position: relative;
+    top: -250px;
+    visibility: hidden;
+}
 .pokemon-card{
     margin: 25px;
-    padding: 60px 20px;
+    padding: 50px 10px 30px;
     border-radius: 25px;
     text-align: center;
     width: 250px;
-    height: 250px;
-    background-color: rgba(0, 0, 0, 0.035);
-}
-.pokemon-card p{
-    color: grey;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.435);
 }
 .pokemon-card .img-container{
     margin: auto;
@@ -74,8 +116,28 @@ header #searchSubmit{
     display: block;
     margin: auto;
 }
+.pokemon-card h1{
+    color: rgb(0, 153, 255);
+}
+.pokemon-card p{
+    font-weight: bold;
+    color: rgb(195, 195, 195);
+}
+.pokemon-card .details{
+    border: 0px;
+    margin: 15px 0px;
+    background-color: rgb(212, 0, 0);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+.pokemon-card .details:hover{
+    transition: 0.3s;
+    transform: scale(1.15);
+}
 .pokemon-card:hover{
     transition: 0.75s;
-    background-color: rgba(0, 0, 0, 0.150);
-    color: rgb(0, 64, 212);
+    background-color: rgba(0, 0, 0, 0.815);
+    /* box-shadow: 0 0px 20px rgba(255, 255, 255, 0.65); */
 }
