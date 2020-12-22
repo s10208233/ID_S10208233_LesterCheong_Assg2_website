@@ -1,23 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-body{
-    font-family: 'Nunito', sans-serif;
-    background-color: black;
-    color: white;
+html{
+    scroll-behavior: smooth;
 }
-.pokemon-container{
+body{
+    margin: 0px;
+    font-family: 'Nunito', sans-serif;
+    background-color: white;
+}
+header{
+    padding: 5px 5px;
+    top: 0px;
+    background-color: rgb(0, 0, 0);
+    color: black;
+    width: 300px;
+    position: fixed;
+    border-bottom-right-radius: 5px;
+}
+header div{
+    color: white;
+    padding: 15px;
+}
+header #searchInput{
+    display: inline-block;
+    width: 153px;
+    padding: 10px 20px;
+    margin: 0px;
+    border: 0px;
+}
+/* Auto Complete Search */
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+  }
+
+header #searchSubmit{
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    border: 0px;
+    padding: 10px 20px;
+    background-color: rgb(0, 105, 167);
+    margin: 0px;
+    width: 100px;
+}
+.main-content{
+    margin-top: 60px;
+    text-align: center;
+}
+#pokemon-container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .pokemon-card{
-    margin: 50px;
-    padding: 30px;
+    margin: 25px;
+    padding: 60px 20px;
     border-radius: 25px;
     text-align: center;
     width: 250px;
+    height: 250px;
+    background-color: rgba(0, 0, 0, 0.035);
+}
+.pokemon-card p{
+    color: grey;
+}
+.pokemon-card .img-container{
+    margin: auto;
+    height: 100px;
+    width: 100px;
+}
+.pokemon-card img{
+    display: block;
+    margin: auto;
 }
 .pokemon-card:hover{
     transition: 0.75s;
-    background-color: white;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.150);
+    color: rgb(0, 64, 212);
 }
