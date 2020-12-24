@@ -5,7 +5,6 @@ const pokemonList = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=649"
 // Variables
 var pokemonVariables = [];
 let nationalDex = [];
-dexPage = 0;
 
 
 //  Execute
@@ -14,7 +13,6 @@ fetch(pokemonList)
 .then(data=>{
     nationalDex=data['results'];
 });
-
 setTimeout(initializeList,750);
 
 
@@ -24,12 +22,11 @@ function initializeList(){
     for (i=0;i<nationalDex.length;i++){
         getPokemon(nationalDex[i]['name']);
         pokemonVariables.push(nationalDex[i]['name']);
-        console.log("Loaded: "+nationalDex[i]['name'],i);
+        //console.log("Loaded: "+nationalDex[i]['name'],i);
     }
 }
 
 async function getPokemon(input){
-    let pokemonName="";
     await fetch(pokemonURL+input)
     .then(response=>response.json())
     .then(data=>{
@@ -38,23 +35,30 @@ async function getPokemon(input){
         pokemonName = data['forms'][0]['name'];
         pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
         pokemonHeight = data["height"];
-        console.log(data);
+        pokemonWeight = data["weight"];
+        type1 = data["types"][0]["type"]["name"];
+        if (data["types"].length==2){
+          type2 = data["types"][1]["type"]["name"];
+        }
+        else { type2="null" }
+        console.log(type1,type2);
     });
     //  Create pokemon cards after every for loop through list
-    setTimeout(
-        createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight)
-    ,75);
+    setTimeout(createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight,pokemonWeight,type1,type2),500);
 }
 
-function createCard(imgSrc,id,name,height){
+function createCard(imgSrc,id,name,height,weight,type1,type2){
     let card = document.createElement('div');
+    let typeStyle = "margin:10px auto;margin-bottom:last-child:50px;padding:5px 10px;width:75px;border-radius:5px;";
     card.classList.add("pokemon-card");
     let cardContent = "\
     <a class='anchors' id="+id+"></a><a class='anchors' id="+name+"></a>\
     <div class='img-container'><img src='"+imgSrc+"'></div>\
     <h1>"+name+"</h1>\
+    <div style='"+typeStyle+"' class='"+type1+"'>"+type1+"</div><div style='"+typeStyle+"' class='"+type2+"'>"+type2+"</div>\
     <p>#"+id+"</p>\
-    <p>Height: "+height+"</p>\
+    <p>Height: "+height+"<br>\
+    Weight: "+weight+"</p>\
     <button class='details'>Details</button>";
     card.innerHTML = cardContent;
     document.getElementById('pokemon-container').appendChild(card)
@@ -69,13 +73,6 @@ document.getElementById('searchSubmit').addEventListener('click', function searc
     function scrollTo(hash) {
         location.hash = "#" + hash;
     }
-    // fetch(pokemonURL + pkmID)
-    // .then(response=>response.json())
-    // .then(data=>{
-    //     console.log(data.name);
-    //     let name = data.name;
-    //     alert("Searched Pokemon:\n\n"+name.charAt(0).toUpperCase() + name.slice(1))
-    // });
 });
 
 // TO MAKE RETURN KEY HIT searchInput FUNCTION
@@ -87,7 +84,7 @@ document.getElementById('searchInput').addEventListener("keyup", function(event)
 });
 
 // AUTO COMPLETE FUCNTION FOR SERACH BAR
-setTimeout(autocomplete(document.getElementById("searchInput"),pokemonVariables),1000);
+setTimeout(autocomplete(document.getElementById("searchInput"),pokemonVariables),500);
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
