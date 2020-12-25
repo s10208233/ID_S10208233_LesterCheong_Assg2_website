@@ -1,11 +1,11 @@
 // Consts
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/"
+const pokemonSpecies = "https://pokeapi.co/api/v2/pokemon-species/"
 const pokemonList = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=649"
 
 // Variables
 var pokemonVariables = [];
 let nationalDex = [];
-
 
 //  Execute
 fetch(pokemonList)
@@ -13,39 +13,46 @@ fetch(pokemonList)
 .then(data=>{
     nationalDex=data['results'];
 });
-setTimeout(initializeList,750);
+setTimeout(initializeList,1000);
 
-
+//  Events
+document.getElementById('searchSubmit').addEventListener('click', function searchByInputpkmID(){
+  let pkmID = document.getElementById('searchInput').value;
+  pkmID = pkmID.charAt(0).toUpperCase() + pkmID.slice(1)
+  console.log(pkmID);
+  scrollTo(pkmID);
+});
 
 // Functions
 function initializeList(){
     for (i=0;i<nationalDex.length;i++){
-        getPokemon(nationalDex[i]['name']);
+        getPokemonAndCreateCard(nationalDex[i]['name']);
         pokemonVariables.push(nationalDex[i]['name']);
         //console.log("Loaded: "+nationalDex[i]['name'],i);
     }
 }
 
-async function getPokemon(input){
-    await fetch(pokemonURL+input)
-    .then(response=>response.json())
-    .then(data=>{
-        pokemonAniSprite = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
-        pokemonID = data['id'];
-        pokemonName = data['forms'][0]['name'];
-        pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
-        pokemonHeight = data["height"];
-        pokemonWeight = data["weight"];
-        type1 = data["types"][0]["type"]["name"];
-        if (data["types"].length==2){
-          type2 = data["types"][1]["type"]["name"];
-        }
-        else { type2="null" }
-        console.log(type1,type2);
-    });
-    //  Create pokemon cards after every for loop through list
-    setTimeout(createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight,pokemonWeight,type1,type2),500);
-}
+async function getPokemonAndCreateCard(input){
+  if(input=="hitmonlee") { input="106"; }
+  await fetch(pokemonURL+input)
+  .then(response=>response.json())
+  .then(data=>{
+      pokemonAniSprite = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+      pokemonID = data['id'];
+      pokemonName = data['forms'][0]['name'];
+      pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
+      pokemonHeight = String(data["height"]/10)+"m";
+      pokemonWeight = String(data["weight"]/10)+"kg";
+      type1 = data["types"][0]["type"]["name"];
+      if (data["types"].length==2){
+        type2 = data["types"][1]["type"]["name"];
+      }
+      else { type2="null" }
+  })
+  .catch(function(){console.log('error')});
+  //  Create pokemon cards after every for loop through list
+  setTimeout(createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight,pokemonWeight,type1,type2),500);
+  }
 
 function createCard(imgSrc,id,name,height,weight,type1,type2){
     let card = document.createElement('div');
@@ -59,29 +66,114 @@ function createCard(imgSrc,id,name,height,weight,type1,type2){
     <p>#"+id+"</p>\
     <p>Height: "+height+"<br>\
     Weight: "+weight+"</p>\
-    <button class='details'>Details</button>";
+    <button id='details-"+id+"' class='details' onclick='openDetails(this.id)'>Details</button>";
     card.innerHTML = cardContent;
     document.getElementById('pokemon-container').appendChild(card)
 }
 
-//  Events
-document.getElementById('searchSubmit').addEventListener('click', function searchByInputpkmID(){
-    let pkmID = document.getElementById('searchInput').value;
-    pkmID = pkmID.charAt(0).toUpperCase() + pkmID.slice(1)
-    console.log(pkmID);
-    scrollTo(pkmID);
-    function scrollTo(hash) {
-        location.hash = "#" + hash;
-    }
+function scrollTo(hash) {
+  location.hash = "#" + hash;
+}
+
+// When the user clicks on <span> (x), close the modal
+document.getElementById('close-details-card').addEventListener('click', function() {
+  console.log("clicked");
+  $("html").removeAttr("style");
+  $(".details-card").css({"display": "none"});
+  $(".top-description").empty();
+  $(".bottom-description").empty();
+  console.log();
 });
 
-// TO MAKE RETURN KEY HIT searchInput FUNCTION
-document.getElementById('searchInput').addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("searchSubmit").click();
-  }
-});
+// Open details
+function openDetails(pkmID){
+  pkmID = pkmID.slice(8);
+  abilities = [];
+  scrollTo(pkmID);
+  $("html").css({"overflow": "hidden",});
+  $(".details-card").css({"display": "block",});
+  getAndSetDetails(pkmID);
+  async function getAndSetDetails(input){
+    // flavor entries
+    if(input=="hitmonlee") { input="106"; }
+    await fetch(pokemonSpecies+input)
+    .then(response=>response.json())
+    .then(data=>{
+      species = data["flavor_text_entries"]//[19]["flavor_text"]
+    })
+    for (i=0;i<species.length;i++){
+      if (species[i]["language"]["name"]=="en" && species[i]["version"]["name"]=="black"){
+        entry = species[i]["flavor_text"];
+      } 
+    }
+    // end flavor entries
+    await fetch(pokemonURL+input)
+    .then(response=>response.json())
+    .then(data=>{
+        pokemonAniSprite = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
+        pokemonID = data['id'];
+        pokemonName = data['forms'][0]['name'];
+        pokemonName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1);
+        pokemonHeight = String(data["height"]/10)+"m";
+        pokemonWeight = String(data["weight"]/10)+"kg";
+        type1 = data["types"][0]["type"]["name"];
+        hp = data["stats"][0]["base_stat"];
+        atk = data["stats"][1]["base_stat"];
+        def = data["stats"][2]["base_stat"];
+        spA = data["stats"][3]["base_stat"];
+        spD = data["stats"][4]["base_stat"];
+        spd = data["stats"][5]["base_stat"];
+        if (data["types"].length==2){
+          type2 = data["types"][1]["type"]["name"];
+        }
+        else { type2="null" }
+        for (i=0;i<data["abilities"].length;i++){
+          abilities.push(data["abilities"][i]["ability"]["name"]);
+        }
+    });
+    setTimeout(setDetails(),200)
+    function setDetails(){
+        let sprite = "<img src='"+pokemonAniSprite+"' alt='sprite'>"
+        let details = document.createElement("div");
+        details.innerHTML = "\
+        <h1>"+pokemonName+"</h1>\
+        <div class='"+type1+" type'>"+type1+"</div><div class='"+type2+" type'>"+type2+"</div>\
+        <p>\
+        Height: "+pokemonHeight+"<br>\
+        Weight: "+pokemonWeight+"\
+        </p>\
+        ";
+        pokemonDescription = "\
+        <h2>Dex Entry</h2>\
+        <p>"+entry+"</p>\
+        <h2>Stats</h2>\
+        <p>\
+          Hitpoints: "+hp+"<br>\
+          Attack: "+atk+"<br>\
+          Defence: "+def+"<br>\
+          Special Attack: "+spA+"<br>\
+          Special Defence: "+spD+"<br>\
+          Speed: "+spd+"<br>\
+          Total: "+(hp+atk+def+spA+spD+spd)+"<br>\
+        </p>\
+        <h2>Abilities</h2>\
+        <ul>"+getAbilities()+"</ul>\
+        ";
+        $(".top-description").append(details);
+        $(".top-description").append(sprite);
+        $(".bottom-description").append(pokemonDescription);
+
+        function getAbilities(){
+          abilitiesString = "";
+          for (i=0;i<abilities;i++){
+            abilitiesString+="<li>"+abilities[i]+"</li>";
+            console.log(abilities[i])
+          }
+          return abilitiesString;
+        }
+      }
+    }
+}
 
 // AUTO COMPLETE FUCNTION FOR SERACH BAR
 setTimeout(autocomplete(document.getElementById("searchInput"),pokemonVariables),500);
@@ -181,4 +273,13 @@ function autocomplete(inp, arr) {
       closeAllLists(e.target);
   });
   }
+
+// RETURN KEY CLICKS searchInput FUNCTION
+document.getElementById('searchInput').addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   document.getElementById("searchSubmit").click();
+  }
+});
+
 // END OF AUTOCOMPLETE FUNCTION FOR SEARCH BAR

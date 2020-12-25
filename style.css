@@ -10,6 +10,13 @@ body{
     background-image:url("/images/dark-pokemon-wallpaper.png");
     background-size: 1000px;
     background-repeat: repeat;
+    /* overflow: hidden; */
+}
+.anchors{
+    display: block;
+    position: relative;
+    top: -200px;
+    visibility: hidden;
 }
 button{
     outline: none;
@@ -24,7 +31,8 @@ header{
     width: 100%;
     padding: 15px 30px 15px 15px;
     top: 0px;
-    background-color: DodgerBlue;
+    /* background-color: DodgerBlue; */
+    background-color: #7f2de9;
     color: black;
     position: fixed;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -61,6 +69,7 @@ header .search-bar{
     padding: 10px 20px;
     margin-right: -5px;
     border: 0px;
+    box-shadow: inset 0 0 3px #000000;
 }
 /* Auto Complete Search */
 .autocomplete {
@@ -137,6 +146,7 @@ header a:hover{
     font-weight: bolder;
 }
 header a:active{
+    padding: 18px 38px;
     transition: 0.01s;
     background-color: rgb(167, 115, 26);
     font-size: 12px;
@@ -150,33 +160,45 @@ header a:active{
 #back-to-top img{
     padding: 10px;
     border-radius: 100%;
-    background-color: #cc0033;
+    background-color: #ffffff;
     width: 35px;
     transition: 0.5s;
 }
 #back-to-top img:hover{
-    transition: 0.5s;
-    transform: scale(1.25);
+    transition: 0.1s;
+    transform: scale(1.1);
+    background-color: rgb(255, 187, 71);
+}
+#back-to-top img:active{
+    transition: 0.1s;
+    transform: scale(0.9);
+    background-color: rgb(235, 149, 0);
 }
 .main-content{
     margin: 200px 10px;
     text-align: center;
 }
 .main-content .intro{
-    margin: 0px auto 100px;
+    margin: 215px auto 75px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: fit-content;
-    background-color: rgb(255, 255, 255);
-    color: rgb(31, 31, 31);
-    width: 400px;
+    justify-content: space-around;
+    /* background-color: rgb(255, 255, 255); */
+    background-image: url("https://media.giphy.com/media/9JxkPTP3alOykb8PmQ/giphy.gif");
+    background-position: center;
+    background-size: 105%;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.664);
+    width: 600px;
     padding: 40px 0px;
     justify-content: center;
-    text-align: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .main-content .intro img{
-    margin-right: 20px;
+    display: block;
+    margin: auto;
+    flex-basis: 25%;
 }
 #pokemon-container{
     display: flex;
@@ -184,24 +206,19 @@ header a:active{
     flex-wrap: wrap;
     justify-content: center;
 }
-.anchors{
-    display: block;
-    position: relative;
-    top: -250px;
-    visibility: hidden;
-}
 .pokemon-card{
     transition: 0.75s;
-    margin: 25px;
-    padding: 50px 10px 30px;
+    margin: 30px;
+    padding: 30px 10px 15px;
     border-radius: 25px;
     text-align: center;
-    width: 250px;
+    width: 235px;
     height: fit-content;
-    background-color: rgba(0, 0, 0, 0.435);
+    background-color: rgba(0, 0, 0, 0.253);
 }
 .pokemon-card .img-container{
     margin: auto;
+    margin-top: 25px;
     height: 100px;
     width: 100px;
 }
@@ -219,7 +236,7 @@ header a:active{
 .pokemon-card .details{
     border: 0px;
     margin: 15px 0px;
-    width: 175px;
+    width: 150px;
     height: 50px;
     background-color: rgb(204, 0, 0);
     color: white;
@@ -247,13 +264,13 @@ header a:active{
 .normal{background-color: gray;}
 .fire{background-color: orangered;}
 .water{background-color: #1e87dd;}
-.electric{background-color: yellow; color: black;}
+.electric{background-color: rgb(246, 250, 20); color: black;}
 .grass{background-color: rgb(27, 189, 22);}
-.ice{background-color: rgb(0, 217, 255);}
+.ice{background-color: rgb(87, 204, 224);}
 .fighting{background-color: rgb(165, 25, 25);}
 .poison{background-color: rgb(170, 21, 170);}
 .ground{background-color: rgb(223, 167, 95);}
-.flying{background-color: rgb(209, 189, 255);color: #000;}
+.flying{background-color: rgb(145, 123, 197);}
 .psychic{background-color: rgb(255, 71, 240);}
 .bug{background-color: rgb(131, 131, 61);}
 .rock{background-color: rgb(149, 97, 33);}
@@ -262,6 +279,80 @@ header a:active{
 .dark{background-color: rgb(53, 42, 42);}
 .steel{background-color: rgb(195, 195, 195);}
 .fairy{background-color: rgb(255, 180, 239);}
+
+/* DETAILS ON CLICK CARD */
+.details-card{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.65); /* Black w/ opacity */
+}
+#close-details-card{
+    margin-top: 20px;
+    background-color: #7e0d0d;
+    color: white;
+    border-radius: 5px;
+    padding: 20px 0px;
+    font-weight: bolder;
+    font-size: 18px;
+    flex-basis: 100%;
+}
+#close-details-card:hover{
+    background-color: #ff0000;
+}
+.details-card .details-content{
+    background-image:url("/images/emerald-wallpaper.png");
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+    width: 600px;
+    margin: 200px auto;
+    border-radius: 15px;
+}
+.details-content p{
+    color: rgb(180, 180, 180);
+}
+.top-description{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.80);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 30px;
+    flex-basis: 100%;
+}
+.top-description img {
+    display: block;
+    margin: 30px auto 15px;
+    width: 150px;
+    height: auto;
+}
+.bottom-description{
+    background-color: rgba(0, 0, 0, 0.80);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    flex-basis: 100%;
+    height: 500px;
+    padding: 30px;
+}
+.top-description .type{
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px 12px;
+    border-radius: 3px;
+}
 
 .about{
     height: 500px;
