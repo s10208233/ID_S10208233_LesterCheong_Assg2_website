@@ -33,7 +33,6 @@ function initializeList(){
 }
 
 async function getPokemonAndCreateCard(input){
-  if(input=="hitmonlee") { input="106"; }
   await fetch(pokemonURL+input)
   .then(response=>response.json())
   .then(data=>{
@@ -82,7 +81,6 @@ document.getElementById('close-details-card').addEventListener('click', function
   $(".details-card").css({"display": "none"});
   $(".top-description").empty();
   $(".bottom-description").empty();
-  console.log();
 });
 
 // Open details
