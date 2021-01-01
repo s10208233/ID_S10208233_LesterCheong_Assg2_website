@@ -86,7 +86,6 @@ document.getElementById('close-details-card').addEventListener('click', function
 // Open details
 function openDetails(pkmID){
   pkmID = pkmID.slice(8);
-  abilities = [];
   scrollTo(pkmID);
   $("html").css({"overflow": "hidden",});
   $(".details-card").css({"display": "block",});
@@ -121,6 +120,8 @@ function openDetails(pkmID){
         spA = data["stats"][3]["base_stat"];
         spD = data["stats"][4]["base_stat"];
         spd = data["stats"][5]["base_stat"];
+        abilities = [];
+
         if (data["types"].length==2){
           type2 = data["types"][1]["type"]["name"];
         }
@@ -131,46 +132,37 @@ function openDetails(pkmID){
     });
     setTimeout(setDetails(),200)
     function setDetails(){
-        let sprite = "<img src='"+pokemonAniSprite+"' alt='sprite'>"
-        let details = document.createElement("div");
-        details.innerHTML = "\
-        <h1>"+pokemonName+"</h1>\
-        <div class='"+type1+" type'>"+type1+"</div><div class='"+type2+" type'>"+type2+"</div>\
-        <p>\
-        Height: "+pokemonHeight+"<br>\
-        Weight: "+pokemonWeight+"\
-        </p>\
-        ";
-        pokemonDescription = "\
-        <h2>Dex Entry</h2>\
-        <p>"+entry+"</p>\
-        <h2>Stats</h2>\
-        <p>\
-          Hitpoints: "+hp+"<br>\
-          Attack: "+atk+"<br>\
-          Defence: "+def+"<br>\
-          Special Attack: "+spA+"<br>\
-          Special Defence: "+spD+"<br>\
-          Speed: "+spd+"<br>\
-          Total: "+(hp+atk+def+spA+spD+spd)+"<br>\
-        </p>\
-        <h2>Abilities</h2>\
-        <ul>"+getAbilities()+"</ul>\
-        ";
-        $(".top-description").append(details);
-        $(".top-description").append(sprite);
-        $(".bottom-description").append(pokemonDescription);
-
-        function getAbilities(){
-          abilitiesString = "";
-          for (i=0;i<abilities;i++){
-            abilitiesString+="<li>"+abilities[i]+"</li>";
-            console.log(abilities[i])
-          }
-          return abilitiesString;
-        }
-      }
+      let sprite = "<img src='"+pokemonAniSprite+"' alt='sprite'>"
+      let details = document.createElement("div");
+      details.innerHTML = "\
+      <h1>"+pokemonName+"</h1>\
+      <div class='"+type1+" type'>"+type1+"</div><div class='"+type2+" type'>"+type2+"</div>\
+      <p>\
+      Height: "+pokemonHeight+"<br>\
+      Weight: "+pokemonWeight+"\
+      </p>\
+      ";
+      pokemonDescription = "\
+      <h2>Dex Entry</h2>\
+      <p>"+entry+"</p>\
+      <h2>Stats</h2>\
+      <p>\
+        Hitpoints: "+hp+"<br>\
+        Attack: "+atk+"<br>\
+        Defence: "+def+"<br>\
+        Special Attack: "+spA+"<br>\
+        Special Defence: "+spD+"<br>\
+        Speed: "+spd+"<br>\
+        Total: "+(hp+atk+def+spA+spD+spd)+"<br>\
+      </p>\
+      <h2>Abilities</h2>\
+      <ul><li>"+abilities[0]+"</li><li class='"+abilities[1]+"'>"+abilities[1]+"</li></ul>\
+      ";
+      $(".top-description").append(details);
+      $(".top-description").append(sprite);
+      $(".bottom-description").append(pokemonDescription);
     }
+  }
 }
 
 // AUTO COMPLETE FUCNTION FOR SERACH BAR
@@ -281,3 +273,13 @@ document.getElementById('searchInput').addEventListener("keyup", function(event)
 });
 
 // END OF AUTOCOMPLETE FUNCTION FOR SEARCH BAR
+
+// MOBILE NAV
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
