@@ -12,7 +12,8 @@ View the wireframe: https://xd.adobe.com/view/22a59bb0-1996-4b8a-a0f3-1f92dcfb7d
 XD File can be found in the repository named **'assignment01.xd'**
 
 ## Features
-### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg1_website/)
+### Pages
+#### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg1_website/)
 The homepage displays the lastest news and music Kygo's has out.
 #### Banner
 Features the latest music using Spotify generated iframe.
@@ -27,7 +28,7 @@ Developer message
 - Mobile navigation: Upon going below 850px screen size the desktop navigation bar gets hidden and only shown when the hamburger icon is active.
 
 ### Features Left to Implement
-- Pagination for optimization/better loading time.
+- Pagination instead of all in one to cut down loading time.
 - "Details" button to open up modal on mobile.
 - Addition of newer generation of Pokemons.
 
@@ -38,7 +39,7 @@ PokeAPI was used to retrieve using fetch to display the most relevant informatio
 ### CSS - Modal Box
 "Details" button opens up the details of a particular Pokemon to display the stats. Using a modal box allows this this application to run on a single page.
 ### Javascript - Autocomplete/Suggestions Search Box
-Users may not get remember or get a Pokemon name spelling correct, this feature is implemented to assist the user in searching for a Pokemon better improving the experience. Along with the suggestions, "Enter" or return key has been binded to the "Search" button of the search bar allowing for more intuitive user experience.
+Users may not remember or get a Pokemon name spelling correct on the first try, this feature is implemented to assist the user in searching for a Pokemon better improving the experience. Along with the suggestions, "Enter" or return key has been binded to the "Search" button of the search bar which helps give an intuitive user experience.
 
 ## Credits
 
@@ -47,10 +48,25 @@ Users may not get remember or get a Pokemon name spelling correct, this feature 
 
 ### Media
 *The photos used in this site were obtained from ...*<br><br>
+- dark-pokemon-wallpaper
+  https://wallpapercave.com/w/wp7808611
 
+- pokedex-sprite 
+  https://leonhartopedia.fandom.com/wiki/Pok%C3%A9dex
+
+- escape-rope-sprite
+  https://pokemon.fandom.com/wiki/Escape_Rope
+
+- emerald-wallpaper 
+  https://www.reddit.com/r/wallpapers/comments/10batf/pokemon_emerald_intro_wallpaper/
+
+- wise-words
+  https://www.billionsucess.com/
+
+- about
+  https://media.giphy.com/media/X2FueLPUhGhIk/giphy.gif
 
 
 ### Acknowledgements
-
-- I received inspiration for this project from https://pokemondb.net/ and his very cool music.
+- I received inspiration for this project from the game https://pokemmo.eu/ 
 
