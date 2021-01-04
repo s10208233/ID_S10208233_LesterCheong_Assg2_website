@@ -1,9 +1,9 @@
 # ID-Assignment02 - PokeDex
-The KYGO website is a dedicated website for the sing songwriter KYGO or Kyrre Gørvell-Dahll. In addition, it allows user to view news of upcoming or existing albums,upcoming lives shows, merchandise, videos and contact/follow the sing songwriter himself.
-
+The Pokedex webpage is a web application of a PokeDex or Pokemon encyclopedia consisting of Pokemons in the Japanese role play game franchaise from the first generation up to the fifth generation. Goal being to allow users to search up and view detailed information of a specific Pokemon.
 
 ## Design Process
-Kygo creates music under the 'EDM' and wave/beach house genre, *'EDM' also known as electronic dance music*, the ambience of his live shows and the mood of his songs generally falls similar to a mood of disco lights or beach vibes. As mentioned in the introduction, this website is designed for Kygo's audience who wishes to follow up news of kygo, listen to his music/album on the website and external platforms such as Spotify via iframes or through external links, book up coming live shows, redirect users/audience interested in Kygo's merchandise to his store, watch music videos or recorded performances and to contact kygo through an email address link or to keep in contact by following through email subscription. New users are also able to learn more about Kygo and his work through this site.
+While the franchaise of the Pokemon games on the Nintendo handhelds have their own Pokedex in the game the information given is often not enough for players to leverage towards a more competitive gameplay. Hence the PokeDex webpage/web application was designed to give in depth details of a single pokemon giving the users; *this is mainly targeted towards competitive players.* The look and feel of the design are aligned with the theme of the game itself.
+
 
 **Exaple Scenario**
 >  1. 
@@ -27,11 +27,18 @@ Developer message
 - Mobile navigation: Upon going below 850px screen size the desktop navigation bar gets hidden and only shown when the hamburger icon is active.
 
 ### Features Left to Implement
-- Possible features to implement: Parallax scrolling with JavaScript for aesthetic.
+- Pagination for optimization/better loading time.
+- "Details" button to open up modal on mobile.
+- Addition of newer generation of Pokemons.
 
 ## Technologies Used
+### APIs
+PokeAPI was used to retrieve using fetch to display the most relevant information needed for the Pokemons.
 
-
+### CSS - Modal Box
+"Details" button opens up the details of a particular Pokemon to display the stats. Using a modal box allows this this application to run on a single page.
+### Javascript - Autocomplete/Suggestions Search Box
+Users may not get remember or get a Pokemon name spelling correct, this feature is implemented to assist the user in searching for a Pokemon better improving the experience. Along with the suggestions, "Enter" or return key has been binded to the "Search" button of the search bar allowing for more intuitive user experience.
 
 ## Credits
 
