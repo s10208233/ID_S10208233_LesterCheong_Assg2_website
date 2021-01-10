@@ -15,25 +15,9 @@
 <body>
 <header>
     <!-- MOBILE NAV -->
-    <div id="mobile-nav" class="topnav">
-        <div class="active">
-            <div class="search-bar">
-                <input id="searchInputM" type="text" placeholder="Enter ID or Name">
-                <input id="searchSubmit" type="submit" value="Search">
-            </div>
-        </div>
-        <!-- Navigation links (hidden by default) -->
-        <div id="myLinks">
-            <a href="index.html#">Home</a>
-            <a href="index.html#1">Pokemons</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#my-message">Developer's Message</a>
-        </div>
-        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
-    </div>
+    <a id="hamburger" href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
     <!-- DESKTOP NAV -->
     <div>
         <div class="header-icon">
@@ -49,7 +33,15 @@
         <a href="index.html#">Home</a>
         <a href="index.html#1">Pokemons</a>
         <a href="index.html#about">About</a>
-        <a href="index.html#my-message">Developer's Message</a>
+    </div>
+    <div id="mobile-nav" class="topnav">
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <a href="index.html#">Home</a>
+            <a href="index.html#1">Pokemons</a>
+            <a href="index.html#about">About</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
     </div>
 </header>
 <!-- BACK TO TOP BUTTON -->
@@ -86,11 +78,6 @@
         <p>Lester Cheong started with one mission: to make Pokémon game information as easy to find and digest as possible.</p>
     </div>
 </div>
-<!-- Footer -->
-<footer id="my-message">
-    <h1>Wise words from <span>Mr Krabs</span> from Spongebob</h1>
-    <img src="images/wise-words.jpg">
-</footer>
 <!-- JS -->
 <script src="script.js" type="text/javascript"></script>
 </body>

@@ -2,6 +2,7 @@
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon/"
 const pokemonSpecies = "https://pokeapi.co/api/v2/pokemon-species/"
 const pokemonList = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=649"
+const pokemonAbilityEntry = "https://pokeapi.co/api/v2/ability/"
 
 // Variables
 var pokemonVariables = [];
@@ -13,7 +14,7 @@ fetch(pokemonList)
 .then(data=>{
     nationalDex=data['results'];
 });
-setTimeout(initializeList,1000);
+setTimeout(initializeList,500);
 
 //  Events
 document.getElementById('searchSubmit').addEventListener('click', function searchByInputpkmID(){
@@ -50,7 +51,7 @@ async function getPokemonAndCreateCard(input){
   })
   .catch(function(){console.log('error')});
   //  Create pokemon cards after every for loop through list
-  setTimeout(createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight,pokemonWeight,type1,type2),500);
+  setTimeout(createCard(pokemonAniSprite,pokemonID,pokemonName,pokemonHeight,pokemonWeight,type1,type2),250);
   }
 
 function createCard(imgSrc,id,name,height,weight,type1,type2){
@@ -121,6 +122,7 @@ function openDetails(pkmID){
         spD = data["stats"][4]["base_stat"];
         spd = data["stats"][5]["base_stat"];
         abilities = [];
+        abilitiesEntry = [];
 
         if (data["types"].length==2){
           type2 = data["types"][1]["type"]["name"];
@@ -130,6 +132,33 @@ function openDetails(pkmID){
           abilities.push(data["abilities"][i]["ability"]["name"]);
         }
     });
+    console.log(abilities)
+    // Get Ability Entry
+    await fetch(pokemonAbilityEntry+abilities[0])
+    .then(res=>res.json())
+    .then(data=>{
+      for (i=0;i<data["effect_entries"].length;i++){
+        if (data["effect_entries"][i]["language"]["name"]=="en"){
+          abilitiesEntry.push(data["effect_entries"][i]["effect"]);
+          break
+        }
+      }
+    })
+    if (abilities[1]!="undefined"){
+      await fetch(pokemonAbilityEntry+abilities[1])
+      .then(res=>res.json())
+      .then(data=>{
+        for (i=0;i<data["effect_entries"].length;i++){
+          if (data["effect_entries"][i]["language"]["name"]=="en"){
+            abilitiesEntry.push(data["effect_entries"][i]["effect"]);
+            break
+          }
+        }
+      })
+    }
+
+
+    // Make card and put in details
     setTimeout(setDetails(),200)
     function setDetails(){
       let sprite = "<img src='"+pokemonAniSprite+"' alt='sprite'>"
@@ -156,7 +185,7 @@ function openDetails(pkmID){
         Total: "+(hp+atk+def+spA+spD+spd)+"<br>\
       </p>\
       <h2>Abilities</h2>\
-      <ul><li>"+abilities[0]+"</li><li class='"+abilities[1]+"'>"+abilities[1]+"</li></ul>\
+      <ul><li>"+abilities[0]+"<br><br>"+abilitiesEntry[0]+"</li><li class='"+abilities[1]+"'>"+abilities[1]+"<br><br>"+abilitiesEntry[1]+"</li></ul>\
       ";
       $(".top-description").append(details);
       $(".top-description").append(sprite);
