@@ -78,6 +78,9 @@ This page heavily relies on the PokeAPI api.
 ### Acknowledgements
 - I got the idea for this project while playing the game PokeMMO - https://pokemmo.eu/ discovering the information i most needed as a player.
 
+# Demo Video
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=L-UmZFH-j-A)
+
 #
 ![alt text](https://static.wikia.nocookie.net/leonhartimvu/images/8/8b/Unova_Pok%C3%A9dex_anime.png/revision/latest/scale-to-width-down/1000?cb=20180721124908)
 <br>
