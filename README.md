@@ -8,16 +8,16 @@ While the franchaise of the Pokemon games on the Nintendo handhelds have their o
 **Exaple Scenario**
 >  1. 
 
-View the wireframe: https://xd.adobe.com/view/22a59bb0-1996-4b8a-a0f3-1f92dcfb7def-77f6/<br>
-XD File can be found in the repository named **'assignment01.xd'**
+View the wireframe: https://xd.adobe.com/view/f8186379-17a1-43f0-ae85-0127fc8ae43c-ad4b/?fullscreen<br>
+XD File can be found in the repository named **'ID_S10208233_LesterCheong_Assg2_website'**
 
 ## Features
 ### Pages
-#### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg1_website/)
-The homepage displays the lastest news and music Kygo's has out.
-#### Banner
-#### Pokemons
-#### About
+#### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg2_website/)
+Landing page consisting of the following sections mentioned below...
+##### Banner
+##### Pokemons
+##### About
 
 ### Existing Features
 - Mobile navigation: Upon going below 850px screen size the desktop navigation bar gets hidden and only shown when the hamburger icon is active.
