@@ -16,14 +16,9 @@ XD File can be found in the repository named **'assignment01.xd'**
 #### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg1_website/)
 The homepage displays the lastest news and music Kygo's has out.
 #### Banner
-Features the latest music using Spotify generated iframe.
 #### Pokemons
-Shows the latest news relevant to Kygo
 #### About
-A small sniplet/preview of the Music page (music.html) with a button linking to the Music page itself.
 
-#### Footer
-Developer message
 ### Existing Features
 - Mobile navigation: Upon going below 850px screen size the desktop navigation bar gets hidden and only shown when the hamburger icon is active.
 
@@ -31,18 +26,25 @@ Developer message
 - Pagination instead of all in one to cut down loading time.
 - "Details" button to open up modal on mobile.
 - Addition of newer generation of Pokemons.
-
-## Technologies Used
+<br><br>
+## Technologies Used & Additional Features Created
 ### APIs
 PokeAPI was used to retrieve using fetch to display the most relevant information needed for the Pokemons.
-
-### CSS - Modal Box
+### Header
+Due to the length of the page users may find themselves scrolling often, a fixed header will allow easy navigation at all times regardless of where the
+user is on the page.
+### Modal Box
 "Details" button opens up the details of a particular Pokemon to display the stats. Using a modal box allows this this application to run on a single page.
+This feature was creating using JavaScript and CSS. 
+### Javascript - Back to top button
+Due to the length of the page users may find themselves scrolling often, this button was added to help with the user's navigation through the page. This button works similarly to the "Home" link/button in the header.
 ### Javascript - Autocomplete/Suggestions Search Box
 Users may not remember or get a Pokemon name spelling correct on the first try, this feature is implemented to assist the user in searching for a Pokemon better improving the experience. Along with the suggestions, "Enter" or return key has been binded to the "Search" button of the search bar which helps give an intuitive user experience.
 
 ## Credits
-
+This page heavily relies on the PokeAPI api.
+- Source:
+  https://pokeapi.co/
 ### Content
 
 
@@ -60,13 +62,10 @@ Users may not remember or get a Pokemon name spelling correct on the first try, 
 - emerald-wallpaper 
   https://www.reddit.com/r/wallpapers/comments/10batf/pokemon_emerald_intro_wallpaper/
 
-- wise-words
-  https://www.billionsucess.com/
-
 - about
   https://media.giphy.com/media/X2FueLPUhGhIk/giphy.gif
 
 
 ### Acknowledgements
-- I received inspiration for this project from the game https://pokemmo.eu/ 
+- I got the idea for this project while playing the game PokeMMO - https://pokemmo.eu/ discovering the information i most needed as a player.
 
