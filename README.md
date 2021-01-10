@@ -6,7 +6,10 @@ While the franchaise of the Pokemon games on the Nintendo handhelds have their o
 
 
 **Exaple Scenario**
->  1. 
+>  1. Player is in a mutliplayer battle and mutliplayer battles tend to be very competitive.
+>  2. Oponent sends out a pokemon the player has not ecounter before.
+>  3. Player can refer to the site to get information he needs.
+>  4. Player wins :)
 
 View the wireframe: https://xd.adobe.com/view/f8186379-17a1-43f0-ae85-0127fc8ae43c-ad4b/?fullscreen<br>
 XD File can be found in the repository named **'ID_S10208233_LesterCheong_Assg2_website'**
@@ -16,8 +19,11 @@ XD File can be found in the repository named **'ID_S10208233_LesterCheong_Assg2_
 #### [Homepage - index.html](https://s10208233.github.io/ID_S10208233_LesterCheong_Assg2_website/)
 Landing page consisting of the following sections mentioned below...
 ##### Banner
+A simple banner to give an idea of what this page is about.
 ##### Pokemons
+All pokemon from the game throughout five generations are shown in the main body of the page. Each of these pokemons are in individual div or 'cards' have their own button to display the each Pokemon's information.
 ##### About
+Nothing much to be honest.
 
 ### Existing Features
 - Mobile navigation: Upon going below 850px screen size the desktop navigation bar gets hidden and only shown when the hamburger icon is active.
@@ -35,17 +41,21 @@ user is on the page.
 ### Modal Box
 "Details" button opens up the details of a particular Pokemon to display the stats. Using a modal box allows this this application to run on a single page.
 This feature was creating using JavaScript and CSS. 
+<br>
+Refered from - https://www.w3schools.com/w3css/w3css_modal.asp
+
 ### Javascript - Back to top button
-Due to the length of the page users may find themselves scrolling often, this button was added to help with the user's navigation through the page. This button works similarly to the "Home" link/button in the header.
+Due to the length of the page users may find themselves scrolling often, this button was added to help with the user's navigation through the page. This button works similarly to the "Home" link/button in the header.<br>
+Refered from - https://stackoverflow.com/questions/14249998/jquery-back-to-top
 ### Javascript - Autocomplete/Suggestions Search Box
 Users may not remember or get a Pokemon name spelling correct on the first try, this feature is implemented to assist the user in searching for a Pokemon better improving the experience. Along with the suggestions, "Enter" or return key has been binded to the "Search" button of the search bar which helps give an intuitive user experience.
+<br>
+Refered from - https://www.w3schools.com/howto/howto_js_autocomplete.asp
 
 ## Credits
 This page heavily relies on the PokeAPI api.
 - Source:
   https://pokeapi.co/
-### Content
-
 
 ### Media
 *The photos used in this site were obtained from ...*<br><br>
