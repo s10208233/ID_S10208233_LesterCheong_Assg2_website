@@ -1,6 +1,4 @@
 # ID-Assignment02 - PokeDex
-![alt text](https://static.wikia.nocookie.net/leonhartimvu/images/8/8b/Unova_Pok%C3%A9dex_anime.png/revision/latest/scale-to-width-down/1000?cb=20180721124908)
-<br>
 The Pokedex webpage is a web application of a PokeDex or Pokemon encyclopedia consisting of Pokemons in the Japanese role play game franchaise from the first generation up to the fifth generation. Goal being to allow users to search up and view detailed information of a specific Pokemon.
 
 ## Design Process
@@ -80,3 +78,6 @@ This page heavily relies on the PokeAPI api.
 ### Acknowledgements
 - I got the idea for this project while playing the game PokeMMO - https://pokemmo.eu/ discovering the information i most needed as a player.
 
+#
+![alt text](https://static.wikia.nocookie.net/leonhartimvu/images/8/8b/Unova_Pok%C3%A9dex_anime.png/revision/latest/scale-to-width-down/1000?cb=20180721124908)
+<br>
