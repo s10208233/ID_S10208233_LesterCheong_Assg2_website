@@ -25,8 +25,7 @@ The homepage displays the lastest news and music Kygo's has out.
 ### Features Left to Implement
 - Pagination instead of all in one to cut down loading time.
 - "Details" button to open up modal on mobile.
-- Addition of newer generation of Pokemons.
-<br><br>
+- Addition of newer generation of Pokemons.<br>
 ## Technologies Used & Additional Features Created
 ### APIs
 PokeAPI was used to retrieve using fetch to display the most relevant information needed for the Pokemons.
